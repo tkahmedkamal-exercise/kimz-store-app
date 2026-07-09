@@ -1,5 +1,6 @@
 import { fonts } from "@/constants";
 import { scalingMethods } from "@/utils";
+import useTranslation from "./use-translation";
 
 const { FS, VS } = scalingMethods;
 
@@ -201,7 +202,7 @@ const fontStyles = {
 } as const;
 
 const useFontStyles = () => {
-  const language = "en";
+  const { language } = useTranslation();
   return fontStyles[language];
 };
 

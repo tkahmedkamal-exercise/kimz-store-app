@@ -1,3 +1,4 @@
+import { Icon } from "@/components/icons";
 import { Typography } from "@/components/ui/display";
 import { useTheme, useTranslation, useUserPreferences } from "@/hook";
 import { Button, StyleSheet, View } from "react-native";
@@ -11,6 +12,7 @@ export const Index = () => {
 
   return (
     <View style={styles.container}>
+      <Icon name="arrow-left" size={50} color={theme.primary.base} reverse />
       <Typography variant="heroBold" color={theme.background.overlay}>
         {t("welcome", { name: "ahmed", age: 25 })}
       </Typography>
