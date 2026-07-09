@@ -1,0 +1,22 @@
+import Svg, { Path } from "react-native-svg";
+import { IconProps } from "../types";
+
+function SvgComponent({ size = 24, color = "black", style }: IconProps) {
+  return (
+    <Svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={style}
+    >
+      <Path d="M12 3a12 12 0 008.5 3A12 12 0 0112 21 12 12 0 013.5 6 12 12 0 0012 3M10 9l4 4M14 9l-4 4" />
+    </Svg>
+  );
+}
+
+export default SvgComponent;
