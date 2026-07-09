@@ -1,7 +1,7 @@
 import Svg, { Path } from "react-native-svg";
 import { IconProps } from "../types";
 
-function SvgComponent({ size = 24, color, style }: IconProps) {
+function SvgComponent({ size = 24, color = "black", style }: IconProps) {
   return (
     <Svg
       width={size}
