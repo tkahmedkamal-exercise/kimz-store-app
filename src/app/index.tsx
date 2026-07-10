@@ -1,6 +1,6 @@
 import { Icon } from "@/components/icons";
 import { Typography } from "@/components/ui/display";
-import { Button, Radio, Switch } from "@/components/ui/inputs";
+import { Button, Checkbox, Radio, Switch } from "@/components/ui/inputs";
 import { useTheme, useTranslation, useUserPreferences } from "@/hook";
 import { useState } from "react";
 import { Button as NativeButton, StyleSheet, View } from "react-native";
@@ -17,11 +17,16 @@ export const Index = () => {
   const { direction, t } = useTranslation();
   const [isActive, setIsActive] = useState(false);
   const [options, setOptions] = useState(initOptions);
+  const [isCheck, setIsCheck] = useState(false);
 
   console.log(direction);
 
   return (
     <View style={styles.container}>
+      <Checkbox
+        isSelected={isCheck}
+        onChange={() => setIsCheck((prev) => !prev)}
+      />
       <View style={styles.radioContainer}>
         <Radio
           isActive={options.option1}
