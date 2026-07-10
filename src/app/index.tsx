@@ -1,20 +1,56 @@
 import { Icon } from "@/components/icons";
 import { Typography } from "@/components/ui/display";
-import { Button, Switch } from "@/components/ui/inputs";
+import { Button, Radio, Switch } from "@/components/ui/inputs";
 import { useTheme, useTranslation, useUserPreferences } from "@/hook";
 import { useState } from "react";
 import { Button as NativeButton, StyleSheet, View } from "react-native";
+
+const initOptions = {
+  option1: false,
+  option2: false,
+  option3: false,
+};
 
 export const Index = () => {
   const { setTheme, setLanguage } = useUserPreferences();
   const theme = useTheme();
   const { direction, t } = useTranslation();
   const [isActive, setIsActive] = useState(false);
+  const [options, setOptions] = useState(initOptions);
 
   console.log(direction);
 
   return (
     <View style={styles.container}>
+      <View style={styles.radioContainer}>
+        <Radio
+          isActive={options.option1}
+          onChange={() =>
+            setOptions((prev) => ({
+              ...initOptions,
+              option1: !prev.option1,
+            }))
+          }
+        />
+        <Radio
+          isActive={options.option2}
+          onChange={() =>
+            setOptions((prev) => ({
+              ...initOptions,
+              option2: !prev.option2,
+            }))
+          }
+        />
+        <Radio
+          isActive={options.option3}
+          onChange={() =>
+            setOptions((prev) => ({
+              ...initOptions,
+              option3: !prev.option3,
+            }))
+          }
+        />
+      </View>
       <Switch
         isActive={isActive}
         onChange={() => setIsActive((prev) => !prev)}
@@ -41,5 +77,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 12,
     paddingHorizontal: 16,
+  },
+  radioContainer: {
+    flexDirection: "row",
+    gap: 8,
   },
 });
