@@ -1,7 +1,8 @@
 import { Icon } from "@/components/icons";
 import { Typography } from "@/components/ui/display";
+import { Button } from "@/components/ui/inputs";
 import { useTheme, useTranslation, useUserPreferences } from "@/hook";
-import { Button, StyleSheet, View } from "react-native";
+import { Button as NativeButton, StyleSheet, View } from "react-native";
 
 export const Index = () => {
   const { setTheme, setLanguage } = useUserPreferences();
@@ -12,14 +13,15 @@ export const Index = () => {
 
   return (
     <View style={styles.container}>
+      <Button title="Back" icon="chevron-left" onPress={() => {}} />
       <Icon name="arrow-left" size={50} color={theme.primary.base} reverse />
       <Typography variant="heroBold" color={theme.background.overlay}>
         {t("welcome", { name: "ahmed", age: 25 })}
       </Typography>
-      <Button title="Dark Mode" onPress={() => setTheme("dark")} />
-      <Button title="Light Mode" onPress={() => setTheme("light")} />
-      <Button title="English" onPress={() => setLanguage("en")} />
-      <Button title="Arabic" onPress={() => setLanguage("ar")} />
+      <NativeButton title="Dark Mode" onPress={() => setTheme("dark")} />
+      <NativeButton title="Light Mode" onPress={() => setTheme("light")} />
+      <NativeButton title="English" onPress={() => setLanguage("en")} />
+      <NativeButton title="Arabic" onPress={() => setLanguage("ar")} />
     </View>
   );
 };
@@ -31,5 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    gap: 12,
+    paddingHorizontal: 16,
   },
 });
