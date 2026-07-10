@@ -1,6 +1,12 @@
 import { Icon } from "@/components/icons";
 import { Typography } from "@/components/ui/display";
-import { Button, Checkbox, Radio, Switch } from "@/components/ui/inputs";
+import {
+  Button,
+  Checkbox,
+  FormInput,
+  Radio,
+  Switch,
+} from "@/components/ui/inputs";
 import { useTheme, useTranslation, useUserPreferences } from "@/hook";
 import { useState } from "react";
 import { Button as NativeButton, StyleSheet, View } from "react-native";
@@ -18,11 +24,21 @@ export const Index = () => {
   const [isActive, setIsActive] = useState(false);
   const [options, setOptions] = useState(initOptions);
   const [isCheck, setIsCheck] = useState(false);
+  const [username, setUsername] = useState("");
 
   console.log(direction);
 
   return (
     <View style={styles.container}>
+      <FormInput
+        label="Username"
+        type="text"
+        placeholder="Enter username"
+        iconName="user"
+        value={username}
+        onChangeText={(text) => setUsername(text)}
+        clearInput={() => setUsername("")}
+      />
       <Checkbox
         isSelected={isCheck}
         onChange={() => setIsCheck((prev) => !prev)}
