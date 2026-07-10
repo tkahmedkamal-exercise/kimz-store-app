@@ -1,18 +1,24 @@
 import { Icon } from "@/components/icons";
 import { Typography } from "@/components/ui/display";
-import { Button } from "@/components/ui/inputs";
+import { Button, Switch } from "@/components/ui/inputs";
 import { useTheme, useTranslation, useUserPreferences } from "@/hook";
+import { useState } from "react";
 import { Button as NativeButton, StyleSheet, View } from "react-native";
 
 export const Index = () => {
   const { setTheme, setLanguage } = useUserPreferences();
   const theme = useTheme();
   const { direction, t } = useTranslation();
+  const [isActive, setIsActive] = useState(false);
 
   console.log(direction);
 
   return (
     <View style={styles.container}>
+      <Switch
+        isActive={isActive}
+        onChange={() => setIsActive((prev) => !prev)}
+      />
       <Button title="Back" icon="chevron-left" onPress={() => {}} />
       <Icon name="arrow-left" size={50} color={theme.primary.base} reverse />
       <Typography variant="heroBold" color={theme.background.overlay}>
