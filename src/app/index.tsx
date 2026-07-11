@@ -7,7 +7,7 @@ import {
   Radio,
   Switch,
 } from "@/components/ui/inputs";
-import { RowNav } from "@/components/ui/navigations";
+import { RowNav, TopBar } from "@/components/ui/navigations";
 import { useTheme, useTranslation, useUserPreferences } from "@/hook";
 import { useState } from "react";
 import { Button as NativeButton, StyleSheet, View } from "react-native";
@@ -31,6 +31,16 @@ export const Index = () => {
 
   return (
     <View style={styles.container}>
+      <TopBar
+        title="Edit Profile"
+        actionBtn={{
+          iconName: "dots-vertical",
+          onPress: () => {},
+          flipOnRTL: false,
+        }}
+        goBack
+        forceBack="/"
+      />
       <RowNav
         title="Language"
         icon="world"
