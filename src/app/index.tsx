@@ -7,6 +7,7 @@ import {
   Radio,
   Switch,
 } from "@/components/ui/inputs";
+import { RowNav } from "@/components/ui/navigations";
 import { useTheme, useTranslation, useUserPreferences } from "@/hook";
 import { useState } from "react";
 import { Button as NativeButton, StyleSheet, View } from "react-native";
@@ -30,6 +31,15 @@ export const Index = () => {
 
   return (
     <View style={styles.container}>
+      <RowNav
+        title="Language"
+        icon="world"
+        onPress={() => {}}
+        trailing="chevronWithValue"
+        trailingValue="English"
+        style={undefined}
+        variant="default"
+      />
       <FormInput
         label="Username"
         type="text"
@@ -43,7 +53,7 @@ export const Index = () => {
         isSelected={isCheck}
         onChange={() => setIsCheck((prev) => !prev)}
       />
-      <View style={styles.radioContainer}>
+      <View style={styles.rowContainer}>
         <Radio
           isActive={options.option1}
           onChange={() =>
@@ -81,10 +91,12 @@ export const Index = () => {
       <Typography variant="heroBold" color={theme.background.overlay}>
         {t("welcome", { name: "ahmed", age: 25 })}
       </Typography>
-      <NativeButton title="Dark Mode" onPress={() => setTheme("dark")} />
-      <NativeButton title="Light Mode" onPress={() => setTheme("light")} />
-      <NativeButton title="English" onPress={() => setLanguage("en")} />
-      <NativeButton title="Arabic" onPress={() => setLanguage("ar")} />
+      <View style={styles.rowContainer}>
+        <NativeButton title="Dark Mode" onPress={() => setTheme("dark")} />
+        <NativeButton title="Light Mode" onPress={() => setTheme("light")} />
+        <NativeButton title="English" onPress={() => setLanguage("en")} />
+        <NativeButton title="Arabic" onPress={() => setLanguage("ar")} />
+      </View>
     </View>
   );
 };
@@ -99,7 +111,7 @@ const styles = StyleSheet.create({
     gap: 12,
     paddingHorizontal: 16,
   },
-  radioContainer: {
+  rowContainer: {
     flexDirection: "row",
     gap: 8,
   },
