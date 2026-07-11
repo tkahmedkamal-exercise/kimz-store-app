@@ -8,6 +8,7 @@ import {
   Switch,
 } from "@/components/ui/inputs";
 import { RowNav, TopBar } from "@/components/ui/navigations";
+import { Modal } from "@/components/ui/overlay";
 import { useTheme, useTranslation, useUserPreferences } from "@/hook";
 import { useState } from "react";
 import { Button as NativeButton, StyleSheet, View } from "react-native";
@@ -26,11 +27,29 @@ export const Index = () => {
   const [options, setOptions] = useState(initOptions);
   const [isCheck, setIsCheck] = useState(false);
   const [username, setUsername] = useState("");
+  const [openModal, setOpenMOdal] = useState(false);
 
   console.log(direction);
 
   return (
     <View style={styles.container}>
+      <Modal
+        visible={openModal}
+        title="Modal Title"
+        description="Optional secondary description below the title"
+        closeModal={() => setOpenMOdal(false)}
+        renderItem={() => (
+          <>
+            <Button title="Confirm" size="sm" onPress={() => {}} />
+            <Button
+              variant="danger"
+              size="sm"
+              title="Cancel"
+              onPress={() => {}}
+            />
+          </>
+        )}
+      />
       <TopBar
         title="Edit Profile"
         actionBtn={{
@@ -106,6 +125,7 @@ export const Index = () => {
         <NativeButton title="Light Mode" onPress={() => setTheme("light")} />
         <NativeButton title="English" onPress={() => setLanguage("en")} />
         <NativeButton title="Arabic" onPress={() => setLanguage("ar")} />
+        <NativeButton title="Open Modal" onPress={() => setOpenMOdal(true)} />
       </View>
     </View>
   );
@@ -124,5 +144,6 @@ const styles = StyleSheet.create({
   rowContainer: {
     flexDirection: "row",
     gap: 8,
+    flexWrap: "wrap",
   },
 });
