@@ -10,6 +10,7 @@ const radius = {
   lg: HS(16),
   xl: HS(24),
   "2xl": HS(30),
+  sheet: HS(28),
   full: 9999,
 } as const;
 
