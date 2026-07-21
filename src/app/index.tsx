@@ -1,5 +1,5 @@
 import { Icon } from "@/components/icons";
-import { Typography } from "@/components/ui/display";
+import { Avatar, Typography } from "@/components/ui/display";
 import {
   Button,
   Checkbox,
@@ -11,7 +11,13 @@ import { RowNav, TopBar } from "@/components/ui/navigations";
 import { AppBottomSheet, BottomSheetRef, Modal } from "@/components/ui/overlay";
 import { useTheme, useTranslation, useUserPreferences } from "@/hook";
 import { useRef, useState } from "react";
-import { Button as NativeButton, StyleSheet, Text, View } from "react-native";
+import {
+  Button as NativeButton,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 const initOptions = {
   option1: false,
@@ -33,7 +39,8 @@ export const Index = () => {
   console.log(direction);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Avatar size="lg" enableUploader />
       <Modal
         visible={openModal}
         title="Modal Title"
@@ -147,7 +154,7 @@ export const Index = () => {
           ),
         }}
       />
-    </View>
+    </ScrollView>
   );
 };
 
