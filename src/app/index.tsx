@@ -8,10 +8,10 @@ import {
   Switch,
 } from "@/components/ui/inputs";
 import { RowNav, TopBar } from "@/components/ui/navigations";
-import { Modal } from "@/components/ui/overlay";
+import { AppBottomSheet, BottomSheetRef, Modal } from "@/components/ui/overlay";
 import { useTheme, useTranslation, useUserPreferences } from "@/hook";
-import { useState } from "react";
-import { Button as NativeButton, StyleSheet, View } from "react-native";
+import { useRef, useState } from "react";
+import { Button as NativeButton, StyleSheet, Text, View } from "react-native";
 
 const initOptions = {
   option1: false,
@@ -28,6 +28,7 @@ export const Index = () => {
   const [isCheck, setIsCheck] = useState(false);
   const [username, setUsername] = useState("");
   const [openModal, setOpenMOdal] = useState(false);
+  const BottomSheetREF = useRef<BottomSheetRef>(null);
 
   console.log(direction);
 
@@ -126,7 +127,26 @@ export const Index = () => {
         <NativeButton title="English" onPress={() => setLanguage("en")} />
         <NativeButton title="Arabic" onPress={() => setLanguage("ar")} />
         <NativeButton title="Open Modal" onPress={() => setOpenMOdal(true)} />
+        <NativeButton
+          title="Open Bottom Sheet"
+          onPress={() => BottomSheetREF.current?.expand()}
+        />
       </View>
+
+      <AppBottomSheet
+        ref={BottomSheetREF}
+        title="hello word"
+        description="Default description"
+        bottomSheetProps={{
+          snapPoints: ["10%", "40%", "60%"],
+          index: -1,
+          children: (
+            <View>
+              <Text>Content here!</Text>
+            </View>
+          ),
+        }}
+      />
     </View>
   );
 };

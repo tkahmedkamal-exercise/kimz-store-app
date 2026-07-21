@@ -1,11 +1,9 @@
 const { defineConfig } = require("eslint/config");
 const expoConfig = require("eslint-config-expo/flat");
 const reactNative = require("eslint-plugin-react-native");
-const typescriptEslint = require("@typescript-eslint/eslint-plugin");
-const tsParser = require("@typescript-eslint/parser");
 
 module.exports = defineConfig([
-  expoConfig,
+  ...expoConfig,
   {
     plugins: {
       "react-native": reactNative,
@@ -19,11 +17,7 @@ module.exports = defineConfig([
   },
   {
     files: ["**/*.ts", "**/*.tsx"],
-    plugins: {
-      "@typescript-eslint": typescriptEslint,
-    },
     languageOptions: {
-      parser: tsParser,
       parserOptions: {
         projectService: true,
       },
