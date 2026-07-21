@@ -1,5 +1,5 @@
 import { Icon } from "@/components/icons";
-import { Avatar, Typography } from "@/components/ui/display";
+import { Avatar, Typography, UserGreeting } from "@/components/ui/display";
 import {
   Button,
   Checkbox,
@@ -40,6 +40,7 @@ export const Index = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <UserGreeting userName="Jonathan Smith" meta="jonathan@kimzshop.com" />
       <Avatar size="lg" enableUploader />
       <Modal
         visible={openModal}
@@ -164,8 +165,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
     gap: 12,
+    marginTop: 20,
     paddingHorizontal: 16,
   },
   rowContainer: {
