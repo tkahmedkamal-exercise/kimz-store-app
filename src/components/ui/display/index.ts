@@ -1,3 +1,4 @@
+export { default as AddressCard } from "./address-card/address-card";
 export { default as Avatar } from "./avatar/avatar";
 export { default as IconBadge } from "./icon-badge/icon-badge";
 export { default as InfoCard } from "./info-card/info-card";

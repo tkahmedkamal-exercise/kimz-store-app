@@ -1,5 +1,6 @@
 import { Icon } from "@/components/icons";
 import {
+  AddressCard,
   Avatar,
   IconBadge,
   InfoCard,
@@ -47,6 +48,7 @@ export const Index = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <AddressCard type="office" city="Cairo" address="Cairo, Egypt" />
       <InfoCard>
         <InfoCard.Leading
           title="Los Angeles"
