@@ -1,6 +1,7 @@
 import { Icon } from "@/components/icons";
 import {
   Avatar,
+  IconBadge,
   InfoCard,
   StatusBill,
   Typography,
@@ -52,6 +53,7 @@ export const Index = () => {
           description="Los Angeles, United States"
         />
         <InfoCard.Trailing>
+          <IconBadge iconName="bell" color="success" />
           <StatusBill color="success" label="Home" iconName="home" />
         </InfoCard.Trailing>
       </InfoCard>
