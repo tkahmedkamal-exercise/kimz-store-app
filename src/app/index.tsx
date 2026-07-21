@@ -1,5 +1,10 @@
 import { Icon } from "@/components/icons";
-import { Avatar, Typography, UserGreeting } from "@/components/ui/display";
+import {
+  Avatar,
+  InfoCard,
+  Typography,
+  UserGreeting,
+} from "@/components/ui/display";
 import {
   Button,
   Checkbox,
@@ -40,6 +45,15 @@ export const Index = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <InfoCard>
+        <InfoCard.Leading
+          title="Los Angeles"
+          description="Los Angeles, United States"
+        />
+        <InfoCard.Trailing>
+          <Text>Component</Text>
+        </InfoCard.Trailing>
+      </InfoCard>
       <UserGreeting userName="Jonathan Smith" meta="jonathan@kimzshop.com" />
       <Avatar size="lg" enableUploader />
       <Modal
