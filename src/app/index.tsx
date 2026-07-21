@@ -4,6 +4,7 @@ import {
   Avatar,
   IconBadge,
   InfoCard,
+  PaymentCard,
   StatusBill,
   Typography,
   UserGreeting,
@@ -48,6 +49,12 @@ export const Index = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <PaymentCard
+        variant="success"
+        cardNumber="5555"
+        cardType="Mastercard"
+        expiryDate="04/27"
+      />
       <AddressCard type="office" city="Cairo" address="Cairo, Egypt" />
       <InfoCard>
         <InfoCard.Leading
