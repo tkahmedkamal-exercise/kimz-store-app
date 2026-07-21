@@ -2,6 +2,7 @@ import { Icon } from "@/components/icons";
 import {
   Avatar,
   InfoCard,
+  StatusBill,
   Typography,
   UserGreeting,
 } from "@/components/ui/display";
@@ -51,7 +52,7 @@ export const Index = () => {
           description="Los Angeles, United States"
         />
         <InfoCard.Trailing>
-          <Text>Component</Text>
+          <StatusBill color="success" label="Home" iconName="home" />
         </InfoCard.Trailing>
       </InfoCard>
       <UserGreeting userName="Jonathan Smith" meta="jonathan@kimzshop.com" />
