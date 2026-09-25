@@ -77,7 +77,7 @@ export const Index = () => {
           <>
             <Button title="Confirm" size="sm" onPress={() => {}} />
             <Button
-              variant="danger"
+              variant="link-danger"
               size="sm"
               title="Cancel"
               onPress={() => {}}
