@@ -15,18 +15,9 @@ const Button = ({
   style,
   disabled = false,
 }: ButtonProps) => {
-  console.log("render");
-  const { styles, colors } = useStyles(variant, size, disabled);
+  const { styles, typographyColorVariant } = useStyles(variant, size, disabled);
 
   const typographyVariant = size === "sm" ? "smallBold" : "normalBold";
-
-  const typographyColorVariant = {
-    primary: colors.fg.contrast,
-    link: colors.primary.base,
-    chip: colors.primary.base,
-    ghost: colors.fg.primary,
-    danger: colors.danger.base,
-  };
 
   return (
     <Pressable
