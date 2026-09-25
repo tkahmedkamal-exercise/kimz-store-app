@@ -8,7 +8,8 @@
     "scheme": "kimsstoreapp",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.dev-tkahmedkamal.kims-store-app"
     },
     "android": {
       "adaptiveIcon": {
@@ -34,7 +35,11 @@
             "imageWidth": 76
           }
         }
-      ]
+      ],
+      "expo-font",
+      "expo-image",
+      "expo-status-bar",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
