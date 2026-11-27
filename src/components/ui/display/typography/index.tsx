@@ -1,5 +1,5 @@
 import { useFontStyles } from "@/hook";
-import { TypographyVariant } from "@/types";
+import { Language, TypographyVariant } from "@/types";
 import { StyleProp, Text, TextProps, TextStyle } from "react-native";
 
 type TextChildren = string | number | TextChildren[];
@@ -9,6 +9,7 @@ type TypographyProps = {
   children: TextChildren;
   style?: StyleProp<TextStyle>;
   color?: string;
+  forceLanguage?: Language;
   textTransform?: "none" | "capitalize" | "uppercase" | "lowercase";
 } & Omit<TextProps, "children">;
 
@@ -18,9 +19,10 @@ const Typography = ({
   style,
   color,
   textTransform,
+  forceLanguage,
   ...props
 }: TypographyProps) => {
-  const typographyStyles = useFontStyles();
+  const typographyStyles = useFontStyles(forceLanguage);
 
   return (
     <Text

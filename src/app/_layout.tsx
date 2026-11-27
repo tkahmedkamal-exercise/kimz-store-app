@@ -1,7 +1,11 @@
-import AppBootstrap from "@/components/wrappers/app-bootstrap";
+import AppProviders from "@/components/wrappers/app-providers";
 import { useFonts } from "expo-font";
 import { SplashScreen } from "expo-router";
 import { useEffect } from "react";
+
+SplashScreen.preventAutoHideAsync().catch(() => {
+  console.warn("Failed to prevent auto hide");
+});
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -25,5 +29,5 @@ export default function RootLayout() {
     return null;
   }
 
-  return <AppBootstrap />;
+  return <AppProviders />;
 }
