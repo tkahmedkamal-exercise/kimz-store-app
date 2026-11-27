@@ -1,7 +1,25 @@
-import { Stack } from "expo-router";
+import { useTheme } from "@/hook";
+import { DefaultTheme, Stack, ThemeProvider } from "expo-router";
 
 const RootLayout = () => {
-  return <Stack />;
+  const colors = useTheme();
+
+  const navigationTheme = {
+    ...DefaultTheme,
+    colors: { ...DefaultTheme.colors, background: colors.background.base },
+  };
+
+  return (
+    <ThemeProvider value={navigationTheme}>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="(main)" />
+      </Stack>
+    </ThemeProvider>
+  );
 };
 
 export default RootLayout;
