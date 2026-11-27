@@ -17,7 +17,13 @@ type TopBarBackProps =
 
 type TopBarProps = TopBarBaseProps & TopBarBackProps;
 
-const TopBar = ({ title, goBack, forceBack, actionBtn }: TopBarProps) => {
+const TopBar = ({
+  title,
+  goBack,
+  forceBack,
+  actionBtn,
+  style,
+}: TopBarProps) => {
   const router = useRouter();
   const { styles, colors } = useStyles();
 
@@ -33,39 +39,41 @@ const TopBar = ({ title, goBack, forceBack, actionBtn }: TopBarProps) => {
   };
 
   return (
-    <View style={styles.container}>
-      {goBack ? (
-        <Pressable onPress={handleGoBack}>
-          <Icon
-            name="chevron-left"
-            size={22}
-            color={colors.fg.primary}
-            reverse
-          />
-        </Pressable>
-      ) : (
-        <View />
-      )}
+    <View style={styles.safeAreaView}>
+      <View style={[styles.container, style]}>
+        {goBack ? (
+          <Pressable onPress={handleGoBack}>
+            <Icon
+              name="chevron-left"
+              size={22}
+              color={colors.fg.primary}
+              reverse
+            />
+          </Pressable>
+        ) : (
+          <View />
+        )}
 
-      <Typography
-        variant="mediumBold"
-        color={colors.fg.primary}
-        textTransform="capitalize"
-      >
-        {title}
-      </Typography>
-      {actionBtn ? (
-        <Pressable onPress={actionBtn.onPress}>
-          <Icon
-            name={actionBtn.iconName}
-            size={22}
-            color={colors.fg.primary}
-            reverse={actionBtn?.flipOnRTL}
-          />
-        </Pressable>
-      ) : (
-        <View />
-      )}
+        <Typography
+          variant="mediumBold"
+          color={colors.fg.primary}
+          textTransform="capitalize"
+        >
+          {title}
+        </Typography>
+        {actionBtn ? (
+          <Pressable onPress={actionBtn.onPress}>
+            <Icon
+              name={actionBtn.iconName}
+              size={22}
+              color={colors.fg.primary}
+              reverse={actionBtn?.flipOnRTL}
+            />
+          </Pressable>
+        ) : (
+          <View />
+        )}
+      </View>
     </View>
   );
 };
