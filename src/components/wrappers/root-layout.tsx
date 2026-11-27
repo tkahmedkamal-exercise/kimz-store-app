@@ -1,14 +1,24 @@
-import { Stack } from "expo-router";
+import { useTheme } from "@/hook";
+import { DefaultTheme, Stack, ThemeProvider } from "expo-router";
 
 const RootLayout = () => {
+  const colors = useTheme();
+
+  const navigationTheme = {
+    ...DefaultTheme,
+    colors: { ...DefaultTheme.colors, background: colors.background.base },
+  };
+
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="(main)" />
-    </Stack>
+    <ThemeProvider value={navigationTheme}>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="(main)" />
+      </Stack>
+    </ThemeProvider>
   );
 };
 
