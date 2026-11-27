@@ -1,47 +1,68 @@
 import { radius, spacing } from "@/constants";
 import { useFontStyles, useTheme } from "@/hook";
 import { scalingMethods } from "@/utils";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { StatusType } from "./types";
 const { HS, VS } = scalingMethods;
 
-const useStyles = (inputCurrentStatus: StatusType) => {
+const useStyles = (currentStatus: StatusType) => {
   const colors = useTheme();
   const fontFamilyStyles = useFontStyles();
 
-  const borderColorMapping = {
+  const isAndroid = Platform.OS === "android";
+
+  const colorMapping = {
     default: colors.fg.tertiary,
     focused: colors.primary.base,
     filled: colors.primary.base,
     error: colors.danger.base,
   };
 
+  const statusColor = colorMapping[currentStatus];
+
   const styles = StyleSheet.create({
     container: {
       alignSelf: "stretch",
     },
-
-    inputWrapper: {
+    fieldWrapper: {
       height: VS(52),
       flexDirection: "row",
       alignItems: "center",
       paddingHorizontal: spacing.space12.width,
       paddingVertical: spacing.space12.height,
       borderWidth: HS(1),
-      borderColor: borderColorMapping[inputCurrentStatus],
+      borderColor: statusColor,
       borderRadius: radius.sm,
       backgroundColor: colors.background.base,
       gap: spacing.space12.width,
+    },
+    pressableWrapper: {
+      alignSelf: "stretch",
+    },
+    dropdownValueText: {
+      flex: 1,
+    },
+    dropdownOption: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      height: VS(45),
+      borderBottomWidth: HS(1),
+      borderBottomColor: colors.border.default,
     },
     textInput: {
       alignSelf: "stretch",
       flex: 1,
       color: colors.fg.primary,
       ...fontFamilyStyles.smallRegular,
-      lineHeight: 0,
+      lineHeight: isAndroid ? fontFamilyStyles.smallRegular.lineHeight : 0,
+      textAlignVertical: "center",
+      writingDirection: "ltr",
+      paddingVertical: 0,
+      includeFontPadding: false,
     },
   });
-  return { styles, colors };
+  return { styles, colors, statusColor };
 };
 
 export default useStyles;

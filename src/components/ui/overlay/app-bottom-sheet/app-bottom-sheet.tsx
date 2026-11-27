@@ -1,9 +1,11 @@
 import BottomSheet, {
   BottomSheetBackdrop,
+  BottomSheetFlashList,
   BottomSheetProps,
-  BottomSheetView,
+  BottomSheetScrollView,
 } from "@gorhom/bottom-sheet";
-import { Ref } from "react";
+import { Portal } from "@gorhom/portal";
+import { ComponentProps, ReactNode, Ref } from "react";
 import { View } from "react-native";
 import { Typography } from "../../display";
 import useStyles from "./use-styles";
@@ -11,16 +13,18 @@ import useStyles from "./use-styles";
 type AppBottomSheetProps = {
   title: string;
   description?: string;
+  bottomSheetProps?: Omit<BottomSheetProps, "children" | "enableDynamicSizing">;
+  children?: ReactNode;
   ref: Ref<BottomSheet>;
-  bottomSheetProps?: BottomSheetProps;
 };
 
-export type BottomSheetRef = BottomSheet;
+export type BottomSheetRef = BottomSheet | null;
 
 const AppBottomSheet = ({
   title,
   description,
   bottomSheetProps,
+  children,
   ref,
 }: AppBottomSheetProps) => {
   const { styles } = useStyles();
@@ -36,20 +40,22 @@ const AppBottomSheet = ({
   );
 
   return (
-    <BottomSheet
-      ref={ref}
-      snapPoints={bottomSheetProps?.snapPoints ?? ["20%", "50%", "90%"]}
-      index={bottomSheetProps?.index ?? -1}
-      enableDynamicSizing={false}
-      enablePanDownToClose
-      backdropComponent={renderBackdrop}
-      backgroundStyle={styles.bottomSheet}
-      handleStyle={styles.handleStyle}
-      handleIndicatorStyle={styles.handleIndicatorStyle}
-      {...bottomSheetProps}
-    >
-      <BottomSheetView style={styles.bottomSheetContainer}>
-        <View>
+    <Portal>
+      <BottomSheet
+        ref={ref}
+        snapPoints={
+          bottomSheetProps?.snapPoints ?? ["20%", "50%", "70%", "90%"]
+        }
+        index={bottomSheetProps?.index ?? -1}
+        enableDynamicSizing={false}
+        enablePanDownToClose
+        backdropComponent={renderBackdrop}
+        backgroundStyle={styles.bottomSheet}
+        handleStyle={styles.handleStyle}
+        handleIndicatorStyle={styles.handleIndicatorStyle}
+        {...bottomSheetProps}
+      >
+        <View style={styles.container}>
           <Typography variant="mediumBold" style={styles.title}>
             {title}
           </Typography>
@@ -58,13 +64,46 @@ const AppBottomSheet = ({
               {description}
             </Typography>
           )}
+          {children}
         </View>
-        <View style={styles.bottomSheetContent}>
-          {bottomSheetProps?.children}
-        </View>
-      </BottomSheetView>
-    </BottomSheet>
+      </BottomSheet>
+    </Portal>
   );
 };
+
+const Content = ({ style, children, ...rest }: ComponentProps<typeof View>) => {
+  const { styles } = useStyles();
+
+  return (
+    <View style={[styles.content, style]} {...rest}>
+      {children}
+    </View>
+  );
+};
+
+const Scroll = ({
+  style,
+  children,
+  ...rest
+}: ComponentProps<typeof BottomSheetScrollView>) => {
+  const { styles } = useStyles();
+
+  return (
+    <BottomSheetScrollView style={[styles.content, style]} {...rest}>
+      {children}
+    </BottomSheetScrollView>
+  );
+};
+
+const List = ({
+  style,
+  ...rest
+}: ComponentProps<typeof BottomSheetFlashList>) => {
+  const { styles } = useStyles();
+
+  return <BottomSheetFlashList style={[styles.content, style]} {...rest} />;
+};
+
+export { Content, List, Scroll };
 
 export default AppBottomSheet;

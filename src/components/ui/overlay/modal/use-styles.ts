@@ -31,7 +31,7 @@ const useStyles = () => {
         height: VS(8),
       },
       shadowOpacity: 0.15,
-      shadowRadius: 24,
+      shadowRadius: HS(24),
       elevation: 8,
     },
     contentCloseBTN: {

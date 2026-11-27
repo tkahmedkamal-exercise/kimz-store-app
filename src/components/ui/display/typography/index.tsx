@@ -1,15 +1,16 @@
 import { useFontStyles } from "@/hook";
 import { TypographyVariant } from "@/types";
-import { ReactNode } from "react";
 import { StyleProp, Text, TextProps, TextStyle } from "react-native";
+
+type TextChildren = string | number | TextChildren[];
 
 type TypographyProps = {
   variant: TypographyVariant;
-  children: ReactNode;
+  children: TextChildren;
   style?: StyleProp<TextStyle>;
   color?: string;
   textTransform?: "none" | "capitalize" | "uppercase" | "lowercase";
-} & TextProps;
+} & Omit<TextProps, "children">;
 
 const Typography = ({
   variant = "mediumRegular",
