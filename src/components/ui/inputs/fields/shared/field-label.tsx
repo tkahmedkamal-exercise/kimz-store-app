@@ -1,9 +1,10 @@
+import { Typography } from "@/components/ui/display";
 import { spacing } from "@/constants";
 import { useTheme } from "@/hook";
 import { StyleSheet } from "react-native";
-import { Typography } from "../../display";
+import { FieldLabelProps } from "./types";
 
-const FormInputLabel = ({ label }: { label?: string }) => {
+const FieldLabel = ({ label }: FieldLabelProps) => {
   const colors = useTheme();
 
   if (!label) return null;
@@ -24,4 +25,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FormInputLabel;
+export default FieldLabel;

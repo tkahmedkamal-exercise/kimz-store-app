@@ -1,4 +1,5 @@
 import { persistor, store } from "@/store";
+import { PortalProvider } from "@gorhom/portal";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
@@ -31,7 +32,9 @@ export default function RootLayout() {
     <GestureHandlerRootView style={styles.container}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <Stack />
+          <PortalProvider>
+            <Stack />
+          </PortalProvider>
         </PersistGate>
       </Provider>
     </GestureHandlerRootView>

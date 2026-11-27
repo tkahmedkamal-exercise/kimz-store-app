@@ -13,6 +13,14 @@ const useStyles = () => {
     bottomSheet: {
       backgroundColor: colors.background.base,
       borderRadius: radius.sheet,
+      shadowColor: colors.misc.shadow,
+      shadowOffset: {
+        width: 0,
+        height: -VS(4),
+      },
+      shadowOpacity: 0.08,
+      shadowRadius: HS(16),
+      elevation: 8,
     },
     handleStyle: {
       paddingTop: spacing.space16.height,
@@ -23,26 +31,23 @@ const useStyles = () => {
       height: VS(4),
       backgroundColor: colors.border.default,
     },
-    bottomSheetContainer: {
+    container: {
       flex: 1,
-      justifyContent: "center",
       alignItems: "center",
-      gap: spacing.space16.height,
       paddingHorizontal: spacing.space24.width,
-      paddingTop: spacing.space16.height,
-      paddingBottom: spacing.space24.height,
+      paddingVertical: spacing.space16.height,
     },
     title: {
       color: colors.fg.primary,
       textAlign: "center",
-      marginBottom: spacing.space8.height,
     },
     description: {
       color: colors.fg.secondary,
-
       textAlign: "center",
     },
-    bottomSheetContent: {
+    content: {
+      flex: 1,
+      alignSelf: "stretch",
       marginTop: spacing.space16.height,
     },
   });

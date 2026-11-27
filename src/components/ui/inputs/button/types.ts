@@ -1,7 +1,13 @@
 import { IconName } from "@/components/icons/types";
 import { StyleProp, ViewStyle } from "react-native";
 
-export type VariantType = "primary" | "link" | "chip" | "ghost" | "danger";
+export type VariantType =
+  | "primary"
+  | "primary-outline"
+  | "chip"
+  | "link"
+  | "link-danger"
+  | "ghost";
 
 export type SizeType = "sm" | "lg";
 

@@ -12,21 +12,18 @@ import {
 import {
   Button,
   Checkbox,
-  FormInput,
+  Dropdown,
   Radio,
   Switch,
+  TextInput,
 } from "@/components/ui/inputs";
+import { DismissKeyboard } from "@/components/ui/layout";
 import { RowNav, TopBar } from "@/components/ui/navigations";
 import { AppBottomSheet, BottomSheetRef, Modal } from "@/components/ui/overlay";
+import { Content } from "@/components/ui/overlay/app-bottom-sheet/app-bottom-sheet";
 import { useTheme, useTranslation, useUserPreferences } from "@/hook";
 import { useRef, useState } from "react";
-import {
-  Button as NativeButton,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Button as NativeButton, StyleSheet, Text, View } from "react-native";
 
 const initOptions = {
   option1: false,
@@ -37,18 +34,59 @@ const initOptions = {
 export const Index = () => {
   const { setTheme, setLanguage } = useUserPreferences();
   const theme = useTheme();
-  const { direction, t } = useTranslation();
+  const { t } = useTranslation();
   const [isActive, setIsActive] = useState(false);
   const [options, setOptions] = useState(initOptions);
   const [isCheck, setIsCheck] = useState(false);
   const [username, setUsername] = useState("");
-  const [openModal, setOpenMOdal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [selected, setSelected] = useState("");
   const BottomSheetREF = useRef<BottomSheetRef>(null);
 
-  console.log(direction);
-
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <DismissKeyboard style={styles.container}>
+      <TextInput
+        label="Username"
+        type="text"
+        placeholder="Enter username"
+        iconName="user"
+        value={username}
+        onChangeText={(text) => setUsername(text)}
+        clearInput={() => setUsername("")}
+      />
+      <Dropdown
+        label="Cities"
+        iconName="building"
+        placeholder="Select City"
+        value={selected}
+        onSelect={(val) => setSelected(val)}
+        options={[
+          { label: "Cairo", value: "cairo" },
+          { label: "Alexandria", value: "alexandria" },
+          { label: "Giza", value: "giza" },
+          { label: "Luxor", value: "luxor" },
+          { label: "Aswan", value: "aswan" },
+          { label: "Hurghada", value: "hurghada" },
+          { label: "Sharm El Sheikh", value: "sharm-el-sheikh" },
+          { label: "Port Said", value: "port-said" },
+          { label: "Suez", value: "suez" },
+          { label: "Ismailia", value: "ismailia" },
+          { label: "Mansoura", value: "mansoura" },
+          { label: "Tanta", value: "tanta" },
+          { label: "Zagazig", value: "zagazig" },
+          { label: "Damietta", value: "damietta" },
+          { label: "Damanhur", value: "damanhur" },
+          { label: "Minya", value: "minya" },
+          { label: "Asyut", value: "asyut" },
+          { label: "Sohag", value: "sohag" },
+          { label: "Faiyum", value: "faiyum" },
+          { label: "Beni Suef", value: "beni-suef" },
+        ]}
+      />
+      <NativeButton
+        title="Open Bottom Sheet"
+        onPress={() => BottomSheetREF.current?.expand()}
+      />
       <PaymentCard
         variant="success"
         cardNumber="5555"
@@ -72,12 +110,12 @@ export const Index = () => {
         visible={openModal}
         title="Modal Title"
         description="Optional secondary description below the title"
-        closeModal={() => setOpenMOdal(false)}
+        closeModal={() => setOpenModal(false)}
         renderItem={() => (
           <>
             <Button title="Confirm" size="sm" onPress={() => {}} />
             <Button
-              variant="danger"
+              variant="link-danger"
               size="sm"
               title="Cancel"
               onPress={() => {}}
@@ -103,15 +141,6 @@ export const Index = () => {
         trailingValue="English"
         style={undefined}
         variant="default"
-      />
-      <FormInput
-        label="Username"
-        type="text"
-        placeholder="Enter username"
-        iconName="user"
-        value={username}
-        onChangeText={(text) => setUsername(text)}
-        clearInput={() => setUsername("")}
       />
       <Checkbox
         isSelected={isCheck}
@@ -160,11 +189,7 @@ export const Index = () => {
         <NativeButton title="Light Mode" onPress={() => setTheme("light")} />
         <NativeButton title="English" onPress={() => setLanguage("en")} />
         <NativeButton title="Arabic" onPress={() => setLanguage("ar")} />
-        <NativeButton title="Open Modal" onPress={() => setOpenMOdal(true)} />
-        <NativeButton
-          title="Open Bottom Sheet"
-          onPress={() => BottomSheetREF.current?.expand()}
-        />
+        <NativeButton title="Open Modal" onPress={() => setOpenModal(true)} />
       </View>
 
       <AppBottomSheet
@@ -174,14 +199,13 @@ export const Index = () => {
         bottomSheetProps={{
           snapPoints: ["10%", "40%", "60%"],
           index: -1,
-          children: (
-            <View>
-              <Text>Content here!</Text>
-            </View>
-          ),
         }}
-      />
-    </ScrollView>
+      >
+        <Content>
+          <Text>Content here!</Text>
+        </Content>
+      </AppBottomSheet>
+    </DismissKeyboard>
   );
 };
 
