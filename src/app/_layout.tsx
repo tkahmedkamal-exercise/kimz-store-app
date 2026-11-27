@@ -29,15 +29,15 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <GestureHandlerRootView style={styles.container}>
           <PortalProvider>
             <Stack />
           </PortalProvider>
-        </PersistGate>
-      </Provider>
-    </GestureHandlerRootView>
+        </GestureHandlerRootView>
+      </PersistGate>
+    </Provider>
   );
 }
 
