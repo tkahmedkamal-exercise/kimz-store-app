@@ -1,9 +1,8 @@
-import { scalingMethods } from "@/utils";
-import { ScrollView, ScrollViewProps, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
+import { CONTENT_BOTTOM_GAP } from "../screen-layout/constants";
+import { VerticalScrollViewProps } from "./types";
 
-const { VS } = scalingMethods;
-
-const VerticalScrollView = ({ children, ...rest }: ScrollViewProps) => {
+const VerticalScrollView = ({ children, ...rest }: VerticalScrollViewProps) => {
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"
@@ -20,7 +19,7 @@ const VerticalScrollView = ({ children, ...rest }: ScrollViewProps) => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingBottom: VS(25),
+    paddingBottom: CONTENT_BOTTOM_GAP,
   },
 });
 

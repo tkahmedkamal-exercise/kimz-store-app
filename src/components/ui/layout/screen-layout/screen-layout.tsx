@@ -8,7 +8,6 @@ const ScreenLayout = ({
   hasTabBar = false,
   paddingSides = "both",
   scrollable = false,
-  dismissKeyboardOnTap = false,
   children,
   renderTopBar,
   contentContainerStyle,
@@ -20,34 +19,23 @@ const ScreenLayout = ({
     paddingSides,
   });
 
-  const renderContent = () => {
-    return (
-      <View style={[styles.container, contentContainerStyle]}>{children}</View>
-    );
-  };
-
   if (scrollable) {
     return (
       <View style={styles.scrollViewWrapper}>
         {renderTopBar?.()}
-        <VerticalScrollView {...scrollProps}>{children}</VerticalScrollView>
+        <DismissKeyboard style={[styles.container, contentContainerStyle]}>
+          <VerticalScrollView {...scrollProps}>{children}</VerticalScrollView>
+        </DismissKeyboard>
       </View>
-    );
-  }
-
-  if (dismissKeyboardOnTap) {
-    return (
-      <DismissKeyboard style={styles.viewWrapper}>
-        {renderTopBar?.()}
-        {renderContent()}
-      </DismissKeyboard>
     );
   }
 
   return (
     <View style={styles.viewWrapper}>
       {renderTopBar?.()}
-      {renderContent()}
+      <DismissKeyboard style={[styles.container, contentContainerStyle]}>
+        {children}
+      </DismissKeyboard>
     </View>
   );
 };
