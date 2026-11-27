@@ -1,9 +1,7 @@
-import { persistor, store } from "@/store";
+import AppBootstrap from "@/components/wrappers/app-bootstrap";
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack } from "expo-router";
+import { SplashScreen } from "expo-router";
 import { useEffect } from "react";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -17,7 +15,9 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded || error) {
-      SplashScreen.hideAsync();
+      SplashScreen.hideAsync().catch((error: unknown) => {
+        console.warn("Failed to hide the splash screen:", error);
+      });
     }
   }, [loaded, error]);
 
@@ -25,11 +25,5 @@ export default function RootLayout() {
     return null;
   }
 
-  return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Stack />
-      </PersistGate>
-    </Provider>
-  );
+  return <AppBootstrap />;
 }

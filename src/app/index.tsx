@@ -1,25 +1,14 @@
-import { Icon } from "@/components/icons";
-import { Typography } from "@/components/ui/display";
-import { useTheme, useTranslation, useUserPreferences } from "@/hook";
-import { Button, StyleSheet, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export const Index = () => {
-  const { setTheme, setLanguage } = useUserPreferences();
-  const theme = useTheme();
-  const { direction, t } = useTranslation();
-
-  console.log(direction);
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
-      <Icon name="arrow-left" size={50} color={theme.primary.base} reverse />
-      <Typography variant="heroBold" color={theme.background.overlay}>
-        {t("welcome", { name: "ahmed", age: 25 })}
-      </Typography>
-      <Button title="Dark Mode" onPress={() => setTheme("dark")} />
-      <Button title="Light Mode" onPress={() => setTheme("light")} />
-      <Button title="English" onPress={() => setLanguage("en")} />
-      <Button title="Arabic" onPress={() => setLanguage("ar")} />
+      <Pressable onPress={() => router.push("/(main)/(tabs)")}>
+        <Text>Got to Home Page</Text>
+      </Pressable>
     </View>
   );
 };
