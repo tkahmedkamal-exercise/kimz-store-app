@@ -1,4 +1,5 @@
 import { fonts } from "@/constants";
+import { Language } from "@/types";
 import { scalingMethods } from "@/utils";
 import useTranslation from "./use-translation";
 
@@ -73,137 +74,138 @@ const fontStyles = {
     },
     smallBold: {
       fontFamily: fonts.en.bold,
-      fontSize: FS(12),
+      fontSize: FS(13),
       lineHeight: VS(22),
     },
     smallRegular: {
       fontFamily: fonts.en.regular,
-      fontSize: FS(12),
+      fontSize: FS(13),
       lineHeight: VS(22),
     },
     smallLight: {
       fontFamily: fonts.en.light,
-      fontSize: FS(12),
+      fontSize: FS(13),
       lineHeight: VS(22),
     },
     xsmallBold: {
       fontFamily: fonts.en.bold,
-      fontSize: FS(10),
+      fontSize: FS(11),
       lineHeight: VS(14),
     },
     xsmallRegular: {
       fontFamily: fonts.en.regular,
-      fontSize: FS(10),
+      fontSize: FS(11),
       lineHeight: VS(14),
     },
     xsmallLight: {
       fontFamily: fonts.en.light,
-      fontSize: FS(10),
+      fontSize: FS(11),
       lineHeight: VS(14),
     },
   },
+
   ar: {
     heroBold: {
       fontFamily: fonts.ar.bold,
-      fontSize: FS(35),
-      lineHeight: VS(50),
+      fontSize: FS(38),
+      lineHeight: VS(65),
     },
     heroRegular: {
       fontFamily: fonts.ar.regular,
-      fontSize: FS(35),
-      lineHeight: VS(50),
+      fontSize: FS(38),
+      lineHeight: VS(65),
     },
     xlargeBold: {
       fontFamily: fonts.ar.bold,
-      fontSize: FS(20),
-      lineHeight: VS(30),
+      fontSize: FS(22),
+      lineHeight: VS(39),
     },
     xlargeRegular: {
       fontFamily: fonts.ar.regular,
-      fontSize: FS(20),
-      lineHeight: VS(30),
+      fontSize: FS(22),
+      lineHeight: VS(39),
     },
     largeBold: {
       fontFamily: fonts.ar.bold,
-      fontSize: FS(17),
-      lineHeight: VS(26),
+      fontSize: FS(18),
+      lineHeight: VS(34),
     },
     largeRegular: {
       fontFamily: fonts.ar.regular,
-      fontSize: FS(17),
-      lineHeight: VS(26),
+      fontSize: FS(18),
+      lineHeight: VS(34),
     },
     largeLight: {
       fontFamily: fonts.ar.light,
-      fontSize: FS(17),
-      lineHeight: VS(26),
+      fontSize: FS(18),
+      lineHeight: VS(34),
     },
     mediumBold: {
       fontFamily: fonts.ar.bold,
-      fontSize: FS(15),
-      lineHeight: VS(26),
+      fontSize: FS(16),
+      lineHeight: VS(34), // en 26
     },
     mediumRegular: {
       fontFamily: fonts.ar.regular,
-      fontSize: FS(15),
-      lineHeight: VS(26),
+      fontSize: FS(16),
+      lineHeight: VS(34),
     },
     mediumLight: {
       fontFamily: fonts.ar.light,
-      fontSize: FS(15),
-      lineHeight: VS(26),
+      fontSize: FS(16),
+      lineHeight: VS(34),
     },
     normalBold: {
       fontFamily: fonts.ar.bold,
-      fontSize: FS(13),
-      lineHeight: VS(22),
+      fontSize: FS(14),
+      lineHeight: VS(29),
     },
     normalRegular: {
       fontFamily: fonts.ar.regular,
-      fontSize: FS(13),
-      lineHeight: VS(22),
+      fontSize: FS(14),
+      lineHeight: VS(29),
     },
     normalLight: {
       fontFamily: fonts.ar.light,
-      fontSize: FS(13),
-      lineHeight: VS(22),
+      fontSize: FS(14),
+      lineHeight: VS(29),
     },
     smallBold: {
       fontFamily: fonts.ar.bold,
-      fontSize: FS(11),
-      lineHeight: VS(22),
+      fontSize: FS(13),
+      lineHeight: VS(29),
     },
     smallRegular: {
       fontFamily: fonts.ar.regular,
-      fontSize: FS(11),
-      lineHeight: VS(22),
+      fontSize: FS(13),
+      lineHeight: VS(29),
     },
     smallLight: {
       fontFamily: fonts.ar.light,
-      fontSize: FS(11),
-      lineHeight: VS(22),
+      fontSize: FS(13),
+      lineHeight: VS(29),
     },
     xsmallBold: {
       fontFamily: fonts.ar.bold,
-      fontSize: FS(9),
-      lineHeight: VS(14),
+      fontSize: FS(11),
+      lineHeight: VS(18),
     },
     xsmallRegular: {
       fontFamily: fonts.ar.regular,
-      fontSize: FS(9),
-      lineHeight: VS(14),
+      fontSize: FS(11),
+      lineHeight: VS(18),
     },
     xsmallLight: {
       fontFamily: fonts.ar.light,
-      fontSize: FS(9),
-      lineHeight: VS(14),
+      fontSize: FS(11),
+      lineHeight: VS(18),
     },
   },
 } as const;
 
-const useFontStyles = () => {
+const useFontStyles = (forceLanguage?: Language) => {
   const { language } = useTranslation();
-  return fontStyles[language];
+  return fontStyles[forceLanguage ?? language];
 };
 
 export default useFontStyles;
